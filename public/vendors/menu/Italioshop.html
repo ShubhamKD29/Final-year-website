@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <head>
+    <link rel="stylesheet" href="styles.css">
+    </head>
+
+<body>
+    <header>
+        <h1>The Itallio Shop</h1>
+    </header>
+    <main>
+        <section id="menu">
+            <h2>Menu</h2>
+            <div class="menu-item">
+                <span class="item-name">Pizza</span>
+                <span class="item-price">₹259</span>
+                <input type="number" class="item-quantity" min="1" value="1">
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Burger</span>
+                <span class="item-price">₹159</span>
+                <input type="number" class="item-quantity" min="1" value="1">
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Aglio e Olio</span>
+                <span class="item-price">₹499</span>
+                <input type="number" class="item-quantity" min="1" value="1">
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="menu-item">
+                <span class="item-name">Italian Casserole with Baked Rice</span>
+                <span class="item-price">₹199</span>
+                <input type="number" class="item-quantity" min="1" value="1">
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Truffles</span>
+                <span class="item-price">₹299</span>
+                <input type="number" class="item-quantity" min="1" value="1">
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <span class="item-name">Lasagne </span>
+                <span class="item-price">₹359</span>
+                <input type="number" class="item-quantity" min="1" value="1">
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </section>
+        <section id="cart">
+            <h2>Cart</h2>
+            <ul id="cart-items"></ul>
+            <p id="total-price">Total: ₹0.00</p>
+            <button id="checkout">Checkout</button>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
