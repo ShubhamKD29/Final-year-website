@@ -25,3 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add checkout functionality here
     });
 });
+// ----------------------------------------------------------- index.html text change -------------------------------------------------------
+const sentences = [
+    "Are you starving?",
+    "QuickBitzz is here",
+    "Meals made with love",
+    "Discounts that delight."
+
+];
+
+let currentIndex = 0;
+const sentenceElement = document.getElementById('sentence');
+
+function changeSentence() {
+    currentIndex = (currentIndex + 1) % sentences.length;
+    sentenceElement.textContent = sentences[currentIndex];
+}
+
+// Change sentence every 3 seconds
+setInterval(changeSentence, 3000);
+
