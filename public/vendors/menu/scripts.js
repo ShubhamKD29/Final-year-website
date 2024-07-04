@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const sentences = [
     "Are you starving?",
     "QuickBitzz is here",
-    "Meals made with love",
+    "Meals made with l♥ve",
     "Discounts that delight."
 
 ];
