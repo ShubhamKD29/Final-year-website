@@ -3,58 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>China Town</title>
-    <head>
+    <title>Menu</title>
     <link rel="stylesheet" href="styles.css">
-    </head>
-
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+</head>
 <body>
     <header>
-        <h1>China Town</h1>
+        <h1>Restaurant Name</h1>
+        <div class="cart" onclick="location.href='cart.html'">
+            <span class="cart-icon">🛒</span>
+            <span id="cart-count">0</span>
+        </div>
     </header>
-    <main>
-        <section id="menu">
-            <h2>Menu</h2>
-            <div class="menu-item">
-                <span class="item-name">Spring Rolls (4 pcs)</span>
-                <span class="item-price">₹199</span>
-                <input type="number" class="item-quantity" min="1" value="1">
-                <button class="add-to-cart">Add to Cart</button>
+    <section class="menu">
+        <div class="item" data-id="1">
+            <img src="food1.jpg" alt="Food 1">
+            <h2>Item Name 1</h2>
+            <p>Description and Price</p>
+            <div class="quantity">
+                <button class="minus" onclick="updateQuantity(1, -1)">-</button>
+                <span id="quantity-1">0</span>
+                <button class="plus" onclick="updateQuantity(1, 1)">+</button>
             </div>
-            <div class="menu-item">
-                <span class="item-name">Chicken Dumplings (6 pcs)</span>
-                <span class="item-price">₹259</span>
-                <input type="number" class="item-quantity" min="1" value="1">
-                <button class="add-to-cart">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart(1)">Add to Cart</button>
+        </div>
+        <div class="item" data-id="2">
+            <img src="food2.jpg" alt="Food 2">
+            <h2>Item Name 2</h2>
+            <p>Description and Price</p>
+            <div class="quantity">
+                <button class="minus" onclick="updateQuantity(2, -1)">-</button>
+                <span id="quantity-2">0</span>
+                <button class="plus" onclick="updateQuantity(2, 1)">+</button>
             </div>
-            <div class="menu-item">
-                <span class="item-name">Chicken Fried Rice</span>
-                <span class="item-price">₹189</span>
-                <input type="number" class="item-quantity" min="1" value="1">
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
+            <button class="add-to-cart" onclick="addToCart(2)">Add to Cart</button>
+        </div>
+        <!-- Add more items as needed -->
+    </section>
 
-            <div class="menu-item">
-                <span class="item-name">Vegetable Fried Rice</span>
-                <span class="item-price">₹109</span>
-                <input type="number" class="item-quantity" min="1" value="1">
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="menu-item">
-                <span class="item-name">Shrimp Hakka Noodles </span>
-                <span class="item-price">₹499</span>
-                <input type="number" class="item-quantity" min="1" value="1">
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            
-        </section>
-        <section id="cart">
-            <h2>Cart</h2>
-            <ul id="cart-items"></ul>
-            <p id="total-price">Total: ₹0.00</p>
-            <button id="checkout">Checkout</button>
-        </section>
-    </main>
     <script src="scripts.js"></script>
 </body>
 </html>

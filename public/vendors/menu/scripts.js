@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     const cartItems = document.getElementById('cart-items');
@@ -44,4 +45,3 @@ function changeSentence() {
 
 // Change sentence every 3 seconds
 setInterval(changeSentence, 3000);
-
