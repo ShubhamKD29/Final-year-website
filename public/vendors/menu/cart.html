@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Your Cart</h1>
+    <nav>
+      <a href="menu.html">Menu</a>
+      <a href="admin.html">Admin Page</a>
+    </nav>
+  </header>
+  <main>
+    <div class="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </div>
+    <div class="cart-total">
+      <strong>Total: $<span id="cart-total">0.00</span></strong>
+    </div>
+    <button id="checkout-button">Checkout</button>
+  </main>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD9G7oHjDRmih2_mpJRaUbUSQSBzWd2shk",
+      authDomain: "quickbitzz-firebase.firebaseapp.com",
+      projectId: "quickbitzz-firebase",
+      storageBucket: "quickbitzz-firebase.appspot.com",
+      messagingSenderId: "823056159143",
+      appId: "1:823056159143:web:b3170e103f1739b09be682",
+      databaseURL: "https://quickbitzz-firebase-default-rtdb.firebaseio.com/"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function renderCart() {
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const cartTotalElement = document.getElementById('cart-total');
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            
+            cartItem.innerHTML = `
+                <span>${item.name}</span>
+                <span>$${item.price.toFixed(2)}</span>
+                <span>Quantity: ${item.quantity}</span>
+                <button onclick="removeFromCart(${item.id})">Remove</button>
+            `;
+            
+            cartItemsContainer.appendChild(cartItem);
+            total += item.price * item.quantity;
+        });
+
+        cartTotalElement.innerText = total.toFixed(2);
+    }
+
+    function removeFromCart(itemId) {
+        const itemIndex = cart.findIndex(item => item.id === itemId);
+        if (itemIndex > -1) {
+            cart.splice(itemIndex, 1);
+        }
+        renderCart();
+        updateCartQuantity();
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    document.getElementById('checkout-button').addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Your cart is empty');
+            return;
+        }
+
+        const orderData = {
+            user: firebase.auth().currentUser.displayName,
+            items: cart,
+            total: cart.reduce((total, item) => total + item.price * item.quantity, 0),
+            timestamp: new Date().toISOString()
+        };
+
+        database.ref('orders').push(orderData).then(() => {
+            alert('Order placed successfully');
+            localStorage.removeItem('cart');
+            location.href = 'menu.html';
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCart();
+    });
+  </script>
+</body>
+</html>
